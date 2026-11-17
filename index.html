@@ -875,6 +875,7 @@
   .backlink svg { width: 16px; height: 16px; }
   .backlink:hover { color: var(--navy); border-bottom-color: var(--navy); }
   .backlink:focus-visible { outline-color: var(--navy); }
+  .backlink--top { margin-bottom: clamp(16px, 3vw, 28px); }
 
   /* progress */
   .stepper {
@@ -1109,23 +1110,93 @@
   .pay-row--amount .pay-value { color: var(--navy); }
 
   .copy-btn {
-    flex: none;
-    min-width: 72px;
-    padding: 8px 14px;
-    border: 1px solid rgba(17, 20, 24, 0.22);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.8);
-    color: var(--ink);
-    font: inherit;
-    font-size: 0.82rem;
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(17, 20, 24, 0.22);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
   }
+  .copy-btn svg { width: 18px; height: 18px; }
   .copy-btn:hover { border-color: var(--navy); color: var(--navy); }
   .copy-btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 
   .paycard .btn-whatsapp { width: 100%; justify-content: center; margin-top: 16px; }
   .paycard__note { margin: 12px 0 0; font-size: 0.86rem; line-height: 1.55; color: var(--muted); }
+    /* order summary card */
+  .order { min-width: 0; padding: clamp(18px, 3vw, 28px); }
+  .order .summary { padding: 0 0 16px; }
+
+  .totals { margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .totals__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0 0;
+    font-size: 0.95rem;
+  }
+  .totals__row dt { margin: 0; color: var(--muted); }
+  .totals__row dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .totals__row--total {
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 1.1rem;
+  }
+  .totals__row--total dt { color: var(--ink); font-weight: 500; }
+  .totals__row--total dd { color: var(--navy); font-weight: 500; }
+
+  /* delivery location card */
+  .ship { min-width: 0; padding: clamp(18px, 3vw, 28px); }
+  .ship__list { display: grid; gap: 12px; }
+
+  .ship-opt {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    border: 1px solid rgba(17, 20, 24, 0.10);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  .ship-opt input {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1.5px solid var(--navy);
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+  }
+  .ship-opt input:checked {
+    background: radial-gradient(circle, var(--navy) 0 4.5px, #fff 5.5px);
+  }
+  }
+  .ship-opt__name { flex: 1; min-width: 0; font-weight: 500; font-size: 0.95rem; }
+  .ship-opt__fee { font-weight: 500; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+
+  .ship-opt:hover { border-color: rgba(17, 20, 24, 0.25); }
+  .ship-opt:has(input:checked) {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 1px var(--navy);
+    background: #f9fafb;
+  }
+  .ship-opt:has(input:focus-visible) { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ship-opt { transition: none; }
+  }
 
   @media (max-width: 899px) {
     .product, .pay { grid-template-columns: minmax(0, 1fr); }
@@ -1142,6 +1213,40 @@
     .btn-buy, .copy-btn, .thumb, .backlink, .card__cta { transition: none; }
     .btn-buy:hover { transform: none; }
   }
+
+    .paycard { position: sticky; top: 120px; align-self: start; }
+
+  @media (max-width: 899px) {
+    .paycard { position: static; }
+  }
+
+    .pager {
+      margin-top: clamp(24px, 4vw, 40px);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pager__btn {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 12px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(17, 20, 24, 0.18);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .pager__btn svg { width: 16px; height: 16px; }
+    .pager__btn:hover:not(:disabled) { border-color: var(--navy); }
+    .pager__btn[aria-current="page"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .pager__btn:disabled { opacity: 0.4; cursor: default; }
+    .pager__btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 </style>
 
 </head>
@@ -1201,6 +1306,7 @@
     <div class="featured__inner">
       <h2 class="featured__title" id="featured-title">Featured watches</h2>
       <ul class="grid" id="product-grid"></ul>
+      <nav class="pager" id="pager" aria-label="More products"></nav>
     </div>
   </section>
 
@@ -1333,6 +1439,15 @@
       bank: { name: "Your Bank Name", number: "0123456789", account: "Ocean Pieces" }
     };
 
+   /* ================= DELIVERY LOCATIONS: edit names and prices ================= */
+    var DELIVERY = [
+    { name: "Abuja", fee: 8500 },
+    { name: "Berger extension", fee: 8500 },
+    { name: "Lagos mainland", fee: 4500 },
+    { name: "Lagos island", fee: 5500 },
+    { name: "Ikorodu", fee: 6500 }
+];
+
     /* ================= YOUR WATCHES: edit, add or remove ================= =
        images: add your photo paths here, for example
          images: ["images/marina-gold-1.jpg", "images/marina-gold-2.jpg"]
@@ -1358,7 +1473,7 @@
         short: "All-black steel case with bright hands for evening wear.",
         long: "An all-black watch with bright hands that stay easy to read at night. A good pick for evenings out and a sharp contrast to a light shirt.",
         specs: [["Case", "42 mm black-coated steel"], ["Movement", "Quartz"], ["Strap", "Black silicone"], ["Water resistance", "5 ATM"]] },
-      { slug: "Cartier", name: "Cartier", price: 33000, available: true, images: ["images/Cartier-1.jpeg", "images/Cartier-2.jpeg"],
+      { slug: "cartier", name: "Cartier", price: 33000, available: true, images: ["images/Cartier-1.jpeg", "images/Cartier-2.jpeg"],
         short: "Silver mesh band and a slim blue dial, light on the wrist.",
         long: "A light silver watch on a flexible mesh band with a slim blue dial. The clasp adjusts anywhere along the band, so it fits almost any wrist.",
         specs: [["Case", "38 mm silver steel"], ["Movement", "Quartz"], ["Strap", "Adjustable steel mesh"], ["Water resistance", "3 ATM, splash proof"]] }
@@ -1373,7 +1488,9 @@
       watch: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4h14l1.5 7h-17zM17 44h14l1.5-7h-17z"/><circle cx="24" cy="24" r="12"/><path d="M24 18v6l4 3"/></svg>',
       arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
       back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
-      chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8.5 8.5 0 1 1 8.2 18.7z"/><path d="M9 9.5c.2 2.4 2.6 4.8 5.5 5.5l1.2-1.3-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2z"/></svg>'
+      chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8.5 8.5 0 1 1 8.2 18.7z"/><path d="M9 9.5c.2 2.4 2.6 4.8 5.5 5.5l1.2-1.3-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2z"/></svg>',
+      copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>',
+      check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
     };
 
     function esc(t) {
@@ -1393,29 +1510,51 @@
     }
 
     /* ----- Landing page cards ----- */
-    grid.innerHTML = PRODUCTS.map(function (p) {
-      return '<li><article class="card">' +
-        '<div class="card__media">' + media(p, 0) + '</div>' +
-        '<div class="card__body">' +
-          '<h3 class="card__name"><a class="card__link" href="#product-' + p.slug + '">' + esc(p.name) + '</a></h3>' +
-          '<p class="card__desc">' + esc(p.short) + '</p>' +
-          '<div class="card__foot"><p class="card__price">' + naira(p.price) + '</p>' +
-          '<span class="card__cta">View watch' + ICON.arrow + '</span></div>' +
-        '</div></article></li>';
-    }).join("");
+  var PAGE_SIZE = 8, page = 1;
+  var pager = document.getElementById("pager");
+
+  function cardHTML(p) {
+    return '<li><article class="card">' +
+      '<div class="card__media">' + media(p, 0) + '</div>' +
+      '<div class="card__body">' +
+        '<h3 class="card__name"><a class="card__link" href="#product-' + p.slug + '">' + esc(p.name) + '</a></h3>' +
+        '<p class="card__desc">' + esc(p.short) + '</p>' +
+        '<div class="card__foot"><p class="card__price">' + naira(p.price) + '</p>' +
+        '<span class="card__cta">View watch' + ICON.arrow + '</span></div>' +
+      '</div></article></li>';
+  }
+
+  function renderGrid() {
+    var pages = Math.max(1, Math.ceil(PRODUCTS.length / PAGE_SIZE));
+    page = Math.min(Math.max(page, 1), pages);
+    var start = (page - 1) * PAGE_SIZE;
+    grid.innerHTML = PRODUCTS.slice(start, start + PAGE_SIZE).map(cardHTML).join("");
+
+    var h = '<button class="pager__btn" type="button" data-page="' + (page - 1) + '" aria-label="Previous page"' + (page === 1 ? " disabled" : "") + '>' + ICON.back + '</button>';
+    for (var i = 1; i <= pages; i++) {
+      h += '<button class="pager__btn" type="button" data-page="' + i + '" aria-label="Page ' + i + '"' + (i === page ? ' aria-current="page"' : "") + '>' + i + '</button>';
+    }
+    h += '<button class="pager__btn" type="button" data-page="' + (page + 1) + '" aria-label="Next page"' + (page === pages ? " disabled" : "") + '>' + ICON.arrow + '</button>';
+    pager.innerHTML = h;
+  }
+
+  pager.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-page]");
+    if (!b || b.disabled) return;
+    page = Number(b.getAttribute("data-page"));
+    renderGrid();
+    document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+  });
+
+  renderGrid();
 
     /* ----- Contact button ----- */
     var contactBtn = document.getElementById("contact-wa");
     if (contactBtn) contactBtn.href = waLink("Hello Ocean Pieces, I'd like to ask about a watch.");
 
     /* ----- Shared pieces ----- */
-    function stepper(active) {
-      var names = ["Choose your watch", "Pay by transfer", "Send your receipt"];
-      return '<ol class="stepper" aria-label="Order progress">' + names.map(function (n, i) {
-        var cls = i < active ? ' class="is-done"' : "";
-        var cur = i === active ? ' aria-current="step"' : "";
-        return '<li' + cls + cur + '><span class="stepper__n">' + (i + 1) + '</span><span>' + n + '</span></li>';
-      }).join("") + '</ol>';
+    function stepper() {
+      return '<a class="backlink backlink--top" href="#shop">' + ICON.back + 'Back to shop</a>';
     }
 
     /* ----- Product page ----- */
@@ -1438,7 +1577,6 @@
           '<div class="gallery"><div class="gallery__main" id="gallery-main">' + media(p, 0, "Photo 1") + '</div>' +
           '<div class="gallery__thumbs" role="group" aria-label="Photos of ' + esc(p.name) + '">' + thumbs + '</div></div>' +
           '<div class="detail glass">' +
-            '<a class="backlink" href="#shop">' + ICON.back + 'All watches</a>' +
             '<h1 class="view-title" id="view-title" tabindex="-1">' + esc(p.name) + '</h1>' +
             '<p class="detail__price">' + naira(p.price) + '</p>' +
             '<p class="pill' + (p.available ? "" : " pill--out") + '"><span class="pill__dot"></span>' + (p.available ? "Available" : "Sold out") + '</p>' +
@@ -1450,41 +1588,78 @@
     }
 
     /* ----- Payment page ----- */
-    function payRow(label, id, value, raw, extra) {
-      return '<div class="pay-row' + (extra || "") + '"><div><span class="pay-label">' + label + '</span>' +
-        '<span class="pay-value" id="' + id + '" data-raw="' + esc(raw) + '">' + esc(value) + '</span></div>' +
-        '<button class="copy-btn" type="button" data-copy="' + id + '" aria-label="Copy ' + label.toLowerCase() + '">Copy</button></div>';
+   function payRow(label, id, value, raw, extra, copyable) {
+  return '<div class="pay-row' + (extra || "") + '"><div><span class="pay-label">' + label + '</span>' +
+    '<span class="pay-value" id="' + id + '" data-raw="' + esc(raw) + '">' + esc(value) + '</span></div>' +
+    (copyable ? '<button class="copy-btn" type="button" data-copy="' + id + '" aria-label="Copy ' + label.toLowerCase() + '">' + ICON.copy + '</button>' : '') +
+    '</div>';
     }
 
+    function payMsg(p, d) {
+  return "Hello Ocean Pieces, I have paid " + naira(p.price + d.fee) + " for the " + p.name +
+    " (delivery to " + d.name + "). Here is my receipt.";
+}
+
     function payHTML(p) {
-      var msg = "Hello Ocean Pieces, I have paid " + naira(p.price) + " for the " + p.name + ". Here is my receipt.";
+      var d = DELIVERY[0];
+      var total = p.price + d.fee;
+
+      var options = DELIVERY.map(function (o, i) {
+        return '<label class="ship-opt">' +
+          '<input type="radio" name="delivery" value="' + i + '"' + (i === 0 ? " checked" : "") + '>' +
+          '<span class="ship-opt__name">' + esc(o.name) + '</span>' +
+          '<span class="ship-opt__fee">' + naira(o.fee) + '</span></label>';
+      }).join("");
+
       return '<section class="section pview"><div class="section__inner">' +
-        stepper(1) +
         '<div class="pay">' +
           '<div class="pay__left">' +
             '<a class="backlink" href="#product-' + p.slug + '">' + ICON.back + 'Back to watch details</a>' +
             '<h1 class="view-title" id="view-title" tabindex="-1">Complete your payment</h1>' +
-            '<div class="summary glass">' +
-              '<div class="summary__img">' + (p.images && p.images[0] ? '<img src="' + esc(p.images[0]) + '" alt="">' : ICON.watch) + '</div>' +
-              '<div><p class="summary__name">' + esc(p.name) + '</p><p class="summary__sub">1 watch</p></div>' +
-              '<p class="summary__price">' + naira(p.price) + '</p>' +
+
+            '<div class="order glass">' +
+              '<h2 class="paycard__title">Order summary</h2>' +
+              '<div class="summary">' +
+                '<div class="summary__img">' + (p.images && p.images[0] ? '<img src="' + esc(p.images[0]) + '" alt="">' : ICON.watch) + '</div>' +
+                '<div><p class="summary__name">' + esc(p.name) + '</p><p class="summary__sub">1 watch</p></div>' +
+                '<p class="summary__price">' + naira(p.price) + '</p>' +
+              '</div>' +
+              '<dl class="totals">' +
+                '<div class="totals__row"><dt>Subtotal</dt><dd id="os-sub">' + naira(p.price) + '</dd></div>' +
+                '<div class="totals__row"><dt>Shipping</dt><dd id="os-ship">' + naira(d.fee) + '</dd></div>' +
+                '<div class="totals__row totals__row--total"><dt>Total</dt><dd id="os-total">' + naira(total) + '</dd></div>' +
+              '</dl>' +
             '</div>' +
-            '<ol class="howto">' +
-              '<li><span><strong>Copy the account details</strong> and open your bank app.</span></li>' +
-              '<li><span><strong>Transfer ' + naira(p.price) + '</strong> and take a screenshot of the receipt.</span></li>' +
-              '<li><span><strong>Send the receipt on WhatsApp</strong> with your name and delivery address.</span></li>' +
-            '</ol>' +
+
+            '<div class="ship glass">' +
+              '<h2 class="paycard__title">Delivery location</h2>' +
+              '<div class="ship__list" role="radiogroup" aria-label="Delivery location">' + options + '</div>' +
+            '</div>' +
+
           '</div>' +
+
           '<div class="paycard glass">' +
             '<h2 class="paycard__title">Bank transfer details</h2>' +
-            payRow("Amount to pay", "pv-amount", naira(p.price), String(p.price), " pay-row--amount") +
+            payRow("Amount to pay", "pv-amount", naira(total), String(total), " pay-row--amount", true) +
             payRow("Bank", "pv-bank", CONFIG.bank.name, CONFIG.bank.name) +
-            payRow("Account number", "pv-number", CONFIG.bank.number, CONFIG.bank.number) +
+            payRow("Account number", "pv-number", CONFIG.bank.number, CONFIG.bank.number, "", true) +
             payRow("Account name", "pv-account", CONFIG.bank.account, CONFIG.bank.account) +
-            '<a class="btn-whatsapp" href="' + waLink(msg) + '" target="_blank" rel="noopener">' + 'Send receipt </a>' +
+            '<a class="btn-whatsapp" id="pay-wa" href="' + waLink(payMsg(p, d)) + '" target="_blank" rel="noopener">Send receipt </a>' +
             '<p class="paycard__note">Only send the receipt after you have made the transfer.</p>' +
           '</div>' +
         '</div></div></section>';
+    }
+
+    /* updates every price on the payment page when a delivery location is picked */
+    function updatePay(p, idx) {
+      var d = DELIVERY[idx];
+      var total = p.price + d.fee;
+      document.getElementById("os-ship").textContent = naira(d.fee);
+      document.getElementById("os-total").textContent = naira(total);
+      var amt = document.getElementById("pv-amount");
+      amt.textContent = naira(total);
+      amt.setAttribute("data-raw", String(total));
+      document.getElementById("pay-wa").href = waLink(payMsg(p, d));
     }
 
     /* ----- Routing: #product-name and #pay-name show these pages, everything else shows the landing page ----- */
@@ -1515,6 +1690,13 @@
 
     window.addEventListener("hashchange", route);
     route();
+        /* ----- Delivery location picker ----- */
+    view.addEventListener("change", function (e) {
+      if (!e.target.matches('input[name="delivery"]')) return;
+      var m = /^pay-(.+)$/.exec(location.hash.slice(1));
+      var p = m ? find(m[1]) : null;
+      if (p) updatePay(p, Number(e.target.value));
+    });
 
     /* ----- Gallery thumbnails and copy buttons ----- */
     view.addEventListener("click", function (e) {
@@ -1542,8 +1724,8 @@
           sel.removeAllRanges();
           sel.addRange(r);
         }
-        btn.textContent = ok ? "Copied" : "Press Ctrl+C";
-        setTimeout(function () { btn.textContent = "Copy"; }, 2000);
+        if (ok) btn.innerHTML = ICON.check;
+        setTimeout(function () { btn.innerHTML = ICON.copy; }, 2000);
       }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {

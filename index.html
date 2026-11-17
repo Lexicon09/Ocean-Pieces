@@ -77,7 +77,13 @@
   }
 
   .brand { display: block; line-height: 0; }
-  .brand svg { width: 92px; height: auto; display: block; }
+  .brand svg,
+  .brand img {
+  width: 72px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  }
 
   .site-nav {
     display: flex;
@@ -102,7 +108,7 @@
   .site-nav a:hover,
   .site-nav a[aria-current="page"] {
     color: var(--navy);
-    border-bottom-color: var(--navy);
+    border-bottom-color: currentColor;
   }
 
   .site-nav a:focus-visible { outline-color: var(--navy); }
@@ -719,51 +725,99 @@
   }
 
   /* ---------- Footer ---------- */
-  .site-footer {
-    background: #08142c;
-    color: rgba(255, 255, 255, 0.86);
-    padding-block: 28px;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-  }
+.site-footer {
+  background: #f4f5f7;
+  color: var(--navy);
+  padding-block: 32px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
 
-  .site-footer__inner {
-    max-width: 1280px;
-    margin-inline: auto;
-    padding-inline: clamp(0px, 3vw, 40px);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px 32px;
-  }
+.site-footer__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(0px, 3vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px 32px;
+}
 
-  .site-footer__copy { margin: 0; font-size: 0.9rem; color: rgba(255, 255, 255, 0.72); }
+/* left side */
+.site-footer__brand { display: flex; flex-direction: column; gap: 8px; }
 
-  .site-footer__links {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px 32px;
-  }
+.site-footer__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--navy);
+}
 
-  .site-footer a {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding-block: 6px;
-    font-size: 0.95rem;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
-  }
+/* copyright, phone and location share the product card text size */
+.site-footer__copy,
+.site-footer__phone,
+.site-footer__place {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--navy);
+}
 
-  .site-footer a svg { width: 20px; height: 20px; flex: none; }
-  .site-footer a:hover { border-bottom-color: currentColor; }
-  .site-footer a:focus-visible { outline-color: var(--paper); }
+/* right side */
+.site-footer__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+}
+
+.site-footer__social {
+  margin: 0 0 6px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 14px;
+}
+
+.site-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: var(--navy);
+  transition: color 0.2s ease;
+}
+
+.site-footer__social a svg { width: 22px; height: 22px; }
+.site-footer__social a:hover { color: #163b7d; }
+.site-footer__social a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+/* phones: stack, align left, and match the card text size used on phones */
+@media (max-width: 599px) {
+  .site-footer__inner { flex-direction: column; }
+  .site-footer__contact { align-items: flex-start; text-align: left; }
+  .site-footer__copy,
+  .site-footer__phone,
+  .site-footer__place { font-size: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__social a { transition: none; }
+}
+
+/* phones: stack and align left */
+@media (max-width: 599px) {
+  .site-footer__inner { flex-direction: column; }
+  .site-footer__contact { align-items: flex-start; text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__social a, .site-footer__phone { transition: none; }
+}
 
   /* ---------- Clickable product cards ---------- */
   .card { position: relative; }
@@ -1095,18 +1149,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="#home" aria-label="Ocean Pieces, Millionaire Style, Main Street Budget">
-      <svg viewBox="0 0 100 82" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <!-- O as a watch face -->
-        <circle cx="36" cy="30" r="17" fill="none" stroke="#0d2a5c" stroke-width="9"/>
-        <line x1="36" y1="30" x2="36" y2="22" stroke="#0d2a5c" stroke-width="1.6" stroke-linecap="round"/>
-        <line x1="36" y1="30" x2="41" y2="32" stroke="#0d2a5c" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="36" cy="30" r="1.6" fill="#0d2a5c"/>
-        <!-- P -->
-        <path fill="#8fc4c0" fill-rule="evenodd" d="M52 11H68A13.5 13.5 0 0 1 68 38H61V51H52Z M61 19V30H67A5.5 5.5 0 0 0 67 19Z"/>
-        <text x="50" y="65" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" font-weight="500" fill="#0d2a5c">Ocean Pieces</text>
-        <rect x="2" y="70" width="96" height="9" fill="#0d2a5c"/>
-        <text x="50" y="76.2" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="4.6" fill="#ffffff">Millionaire Style, Main Street Budget</text>
-      </svg>
+      <img src="images/logo.png" alt="Ocean Pieces">
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
@@ -1118,7 +1161,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
       </button>
       <ul class="site-nav">
-        <li><a href="#home" aria-current="page">Home</a></li>
+        <li><a href="#home">Home</a></li>
         <li><a href="#shop">Shop</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1216,11 +1259,29 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-  <p class="site-footer__copy">&copy; 2026 Ocean Pieces. Millionaire Style, Main Street Budget.</p>
-  <ul class="site-footer__links">
-    <!-- Replace oceanpieces with your Instagram username and hello@oceanpieces.com with your email -->
-    <li><a href="https://www.instagram.com/oceanspiece.1?utm_source=qr&srtk=a3Rsbm1leDd6b2pn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>Instagram</a></li>
-  </ul>
+
+    <div class="site-footer__brand">
+      <p class="site-footer__name">Ocean Pieces</p>
+      <p class="site-footer__copy">&copy; 2026 Ocean Pieces &middot; All rights reserved</p>
+    </div>
+
+    <div class="site-footer__contact">
+      <ul class="site-footer__social">
+        <li>
+          <a href="https://www.instagram.com/oceanspiece.1" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.tiktok.com/@yourusername" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.9 5.9 0 1 0 5 5.8V9a7.6 7.6 0 0 0 4.4 1.4V7.2A4.5 4.5 0 0 1 16.6 3z"/></svg>
+          </a>
+        </li>
+      </ul>
+      <a class="site-footer__phone" href="tel:+2349066209754">09066209754</a>
+      <p class="site-footer__place">Your State, Nigeria</p>
+    </div>
+
   </div>
 </footer>
 

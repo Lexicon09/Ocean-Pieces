@@ -32,7 +32,7 @@
 
     /* >>> IMPORTANT: paste your ORIGINAL --hero-photo line here (the long url("data:image/jpeg;base64,...") one),
        replacing the line below. Or save your hero image as images/hero.jpg and leave this as it is. <<< */
-    --hero-photo: url("images/hero.png");
+    --hero-photo: url("images/hero.jpg");
 
     color-scheme: dark;
   }
@@ -1424,7 +1424,7 @@
   <section class="featured" id="shop" aria-labelledby="featured-title">
     <div class="featured__inner">
       <div class="featured__head">
-        <h2 class="featured__title" id="featured-title">Featured watches</h2>
+        <h2 class="featured__title" id="featured-title">Collections</h2>
 
         <!-- Search box, sits opposite the "Featured watches" title -->
         <form class="search" id="search-form" role="search" autocomplete="off">
@@ -1568,16 +1568,16 @@
       // WhatsApp number: country code first, no plus sign, no spaces, no leading zero
       whatsapp: "2349066209754",
       // Bank account customers pay into
-      bank: { name: "Your Bank Name", number: "0123456789", account: "Ocean Pieces" }
+      bank: { name: "Access Bank", number: "1535040738", account: "Alade Tolu" }
     };
 
    /* ================= DELIVERY LOCATIONS: edit names and prices ================= */
     var DELIVERY = [
-    { name: "Abuja", fee: 8500 },
-    { name: "Berger extension", fee: 8500 },
-    { name: "Lagos mainland", fee: 4500 },
+    { name: "Akure", fee: 4500 },
+    { name: "Lagos mainland", fee: 3000 },
     { name: "Lagos island", fee: 5500 },
-    { name: "Ikorodu", fee: 6500 }
+    { name: "Ikorodu", fee: 7000 },
+    { name: "Abuja", fee: 10000 }
 ];
 
     /* ================= YOUR WATCHES: edit, add or remove ================= =
@@ -1586,25 +1586,25 @@
        The first image is used on the card. Leave it empty to show placeholders. */
     var PRODUCTS = [
       { slug: "tissot", name: "Tissot PRX", price: 30500, available: true, images: ["images/Tissot PRX-1.jpeg", "images/Tissot PRX-2.jpeg"],
-        short: "Gold-tone case, navy dial and a black leather strap.",
-        long: "A dressy gold-tone watch with a deep navy dial and slim gold markers. The black leather strap keeps it smart for the office and easy to wear on weekends.",
-        specs: [["Case", "40 mm gold-tone steel"], ["Movement", "Quartz"], ["Strap", "Black leather"], ["Water resistance", "3 ATM, splash proof"]] },
-      { slug: "omega", name: "Omega Couturier", price: 65000, available: true, images: ["images/Omega-1.jpeg", "images/Omega-2.jpeg"],
-        short: "Steel chronograph with a white dial and brushed bracelet.",
-        long: "A sporty steel chronograph with three sub-dials on a clean white face. The brushed bracelet is comfortable all day and easy to size.",
-        specs: [["Case", "42 mm stainless steel"], ["Movement", "Quartz chronograph"], ["Strap", "Brushed steel bracelet"], ["Water resistance", "5 ATM"]] },
-      { slug: "tag", name: "Tag", price: 31000, available: true, images: ["images/Tag-1.jpeg", "images/Tag-2.jpeg"],
-        short: "Slim rose-gold case with a clean cream dial.",
-        long: "A thin rose-gold watch with a cream dial and simple baton hours. It sits flat under a cuff and suits small to medium wrists.",
-        specs: [["Case", "34 mm rose-gold steel"], ["Movement", "Quartz"], ["Strap", "Tan leather"], ["Water resistance", "3 ATM, splash proof"]] },
+        short: "",
+        long: "A 1970s-inspired retro sports watch featuring a tonneau-shaped case, a gold-toned bezel, and a blue textured waffle dial with a date window at 3 o'clock.",
+        specs: [["Movement", "Quartz"], ["Strap", "Stainless Steel"], ] },
+      { slug: "omega", name: "Omega Couturier", price: 60000, available: true, images: ["images/Omega-1.jpeg", "images/Omega-2.jpeg"],
+        short: "",
+        long: "Omega Style open heart monphase annual calendar wrist watch ",
+        specs: [["Movement", "Automatic mechanical"], ["Strap", "Alligator-embossed leather straps"]] },
+      { slug: "tag", name: "Tag Heuer", price: 31000, available: true, images: ["images/Tag-1.jpeg", "images/Tag-2.jpeg"],
+        short: "",
+        long: "TAG Heuer Formula 1 Gulf Special Edition Chronograph ",
+        specs: [["Movement", "Swiss Quartz"], ["Strap", "Alligator-embossed leather strap."]] },
       { slug: "patek", name: "Patek Philippe", price: 30000, available: true, images: ["images/Patek-1.jpeg", "images/Patek-2.jpeg"],
-        short: "Self-winding movement, see-through caseback, brown strap.",
-        long: "A self-winding watch that runs on the movement of your wrist, with a see-through caseback so you can watch it work. No battery needed.",
-        specs: [["Case", "41 mm stainless steel"], ["Movement", "Automatic, self-winding"], ["Strap", "Brown leather"], ["Water resistance", "5 ATM"]] },
+        short: "",
+        long: "Patek Philippe-branded Moonphase Skeleton Chronograph (often sold as a fashion or homage watch rather than an official Swiss-made Patek Philippe model).",
+        specs: [["Movement", "Battery-powered Quarts"], ["Strap", "Alligator-embossed leather strap."]] },
       { slug: "carrera", name: "Tag Heuer Carrera", price: 31000, available: true, images: ["images/Carrera-1.jpeg", "images/Carrera-2.jpeg"],
-        short: "All-black steel case with bright hands for evening wear.",
-        long: "An all-black watch with bright hands that stay easy to read at night. A good pick for evenings out and a sharp contrast to a light shirt.",
-        specs: [["Case", "42 mm black-coated steel"], ["Movement", "Quartz"], ["Strap", "Black silicone"], ["Water resistance", "5 ATM"]] },
+        short: "",
+        long: "Classic racing-inspired chronograph featuring a polished stainless steel case, a deep blue sunray dial with three matching sub-dials, silver-tone luminous hands and hour markers, and a date window at the 6 o'clock position.",
+        specs: [["Movement", "Mechanical movement"], ["Strap", "Leather"]] },
       { slug: "cartier", name: "Cartier", price: 33000, available: true, images: ["images/Cartier-1.jpeg", "images/Cartier-2.jpeg"],
         short: "Silver mesh band and a slim blue dial, light on the wrist.",
         long: "A light silver watch on a flexible mesh band with a slim blue dial. The clasp adjusts anywhere along the band, so it fits almost any wrist.",
@@ -1625,14 +1625,14 @@
       /* rest of page 1 */
         { slug: "chenxi", name: "Chenxi", price: 30000, available: true,
         images: ["images/Chenxi-1.jpeg", "images/Chenxi-2.jpeg"],
-        short: "Replace with a short description of the watch.",
-        long: "Replace with the full description of the watch.",
-        specs: [["Case", "40 mm steel"], ["Movement", "Quartz"], ["Strap", "Leather"], ["Water resistance", "3 ATM, splash proof"]] },
+        short: "",
+        long: "A timeless, vintage-inspired dress watch featuring a polished rectangular silver-tone case, a black dial with Roman numerals, a small seconds subdial, and a date window",
+        specs: [["Movement", "Quartz"], ["Strap", "Faux Leather"]] },
         { slug: "audemars", name: "Audemars Piguet", price: 30000, available: true,
         images: ["images/Audemars Piguet-1.jpeg", "images/Audemars Piguet-2.jpeg"],
-        short: "Replace with a short description of the watch.",
-        long: "Replace with the full description of the watch.",
-        specs: [["Case", "40 mm steel"], ["Movement", "Quartz"], ["Strap", "Steel bracelet"], ["Water resistance", "3 ATM, splash proof"]] },
+        short: "",
+        long: "A bold, sporty timepiece featuring an octagonal bezel with exposed screws, a black finish, and a striking green chronograph dial with three subdials",
+        specs: [["Movement", "Quartz"], ["Strap", "Steel bracelet"]] },
 
       /* page 2 */
         { slug: "muller", name: "Franck Muller", price: 30000, available: true,
